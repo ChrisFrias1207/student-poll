@@ -12,7 +12,7 @@
 const { configure } = require('quasar/wrappers');
 
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     eslint: {
       // fix: true,
@@ -60,7 +60,16 @@ module.exports = configure(function (/* ctx */) {
         node: 'node16'
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
+      env: {
+        BASE_URL: ctx.dev ? 'http://localhost:3000' : null,
+        CREATOR_NAME: 'Christopher Frias',
+        CREATOR_EMAIL: 'christophe.frias@bronxsoftware.org',
+        LINKEDIN: 'https://www.linkedin.com/in/chris-frias-4a50ba1b5/',
+        LINKEDIN_PIC: 'https://media.licdn.com/dms/image/D4E03AQGi4Cp6NO8Xug/profile-displayphoto-shrink_400_400/0/1681845300430?e=1687392000&v=beta&t=Pt4vt37b3dOCVfsRrW4tGdXoQ_9uxdGjpBDI4YYMaYY'
+      },
+      distDir: '../server/public'
+ 
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -85,7 +94,14 @@ module.exports = configure(function (/* ctx */) {
       // ]
     },
 
+    htmlVariables: {
+      productName: 'BASE Student Job Poll App',
+      productDescription: 'The BASE Student Poll App collects job preferences from high school students.'
+    },
+ 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
+
+
     devServer: {
       // https: true
       open: true // opens browser window automatically
@@ -106,7 +122,9 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Notify'
+      ]
     },
 
     // animations: 'all', // --- includes all animations
